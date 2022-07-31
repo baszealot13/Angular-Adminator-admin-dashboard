@@ -1,4 +1,4 @@
-# AdminApp
+# Angular x Adminator admin dashboard
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.2.
 
@@ -25,3 +25,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Administrator theme
+
+***Adminator*** is a responsive Bootstrap 5 Admin Template. It provides you with a collection of ready to use code snippets and utilities, custom pages, a collection of applications and some useful widgets. Preview of this awesome admin template available here: https://colorlib.com/polygon/adminator/index.html

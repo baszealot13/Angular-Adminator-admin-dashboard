@@ -1,0 +1,2781 @@
+// ---------------------------------------------------------
+// @Media Queries Generator
+// ---------------------------------------------------------
+
+// Mixin used to generate responsive versions of css rules.
+
+@mixin mediaQueryCondition($mq) {
+    $breakpointFound: false;
+
+    @each $breakpoint in $breakpoints {
+        $alias: nth($breakpoint, 1);
+        $condition: nth($breakpoint, 2);
+
+        @if $mq == $alias and $condition {
+            $breakpointFound: true;
+
+            @media #{$condition} {
+                @content;
+            }
+        }
+    }
+
+    @if $breakpointFound == false {
+        @warn "Oops! Breakpoint ‘#{$mq}’ does not exist \:";
+    }
+}
+// ---------------------------------------------------------
+// @Responsive Suffix Generator
+// ---------------------------------------------------------
+
+// Mixin used to generate responsive suffixes for classes (i.e. m-10@sm+).
+
+@mixin generateResponsive() {
+    @each $breakpoint in $breakpoints {
+        $breakpointAlias: nth($breakpoint, 1) !global;
+        $breakpointCondition: nth($breakpoint, 2);
+
+        @include mediaQueryCondition($breakpointAlias) {
+            @content;
+        }
+
+        $breakpointAlias: null !global;
+    }
+}
+
+// ---------------------------------------------------------
+// @TOC
+// ---------------------------------------------------------
+
+// + @Variables
+// + @Centering
+
+// ---------------------------------------------------------
+// @Variables
+// ---------------------------------------------------------
+
+$responsive: true;
+
+// ---------------------------------------------------------
+// @Centering
+// ---------------------------------------------------------
+
+.centerY {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.centerX {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.centerXY {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@if ($responsive == true) {
+    @include generateResponsive() {
+        .centerY\@#{$breakpointAlias} {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .centerX\@#{$breakpointAlias} {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .centerXY\@#{$breakpointAlias} {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+}
+// ---------------------------------------------------------
+// @TOC
+// ---------------------------------------------------------
+
+// + @Variables
+// + @Base
+// + @Gap (0 > 4 Step 1)
+// + @Gap (5 > 35 Step 5)
+// + @Gap (40 > 160 Step 10)
+
+// ---------------------------------------------------------
+// @Variables
+// ---------------------------------------------------------
+
+$responsive: true;
+
+// ---------------------------------------------------------
+// @Base
+// ---------------------------------------------------------
+
+[class*="gap"] {
+    width: auto !important;
+    overflow: hidden !important;
+}
+
+// ---------------------------------------------------------
+// @Gap (0 > 4 Step 1)
+// ---------------------------------------------------------
+
+@for $i from 0 through 4 {
+    .gapX-#{$i} {
+        margin-left: #{($i / -2)}px !important;
+        margin-right: #{($i / -2)}px !important;
+
+        & > * {
+            padding-left: #{($i / 2)}px !important;
+            padding-right: #{($i / 2)}px !important;
+        }
+    }
+
+    .gapY-#{$i} {
+        margin-top: #{($i / -2)}px !important;
+        margin-bottom: #{($i / -2)}px !important;
+
+        & > * {
+            padding-top: #{($i / 2)}px !important;
+            padding-bottom: #{($i / 2)}px !important;
+        }
+    }
+
+    .gap-#{$i} {
+        margin: #{($i / -2)}px !important;
+
+        & > * {
+            padding: #{($i / 2)}px !important;
+        }
+    }
+
+    @if ($responsive == true) {
+        @include generateResponsive() {
+            .gapX-#{$i}\@#{$breakpointAlias} {
+                margin-left: #{($i / -2)}px !important;
+                margin-right: #{($i / -2)}px !important;
+
+                & > * {
+                    padding-left: #{($i / 2)}px !important;
+                    padding-right: #{($i / 2)}px !important;
+                }
+            }
+
+            .gapY-#{$i}\@#{$breakpointAlias} {
+                margin-top: #{($i / -2)}px !important;
+                margin-bottom: #{($i / -2)}px !important;
+
+                & > * {
+                    padding-top: #{($i / 2)}px !important;
+                    padding-bottom: #{($i / 2)}px !important;
+                }
+            }
+
+            .gap-#{$i}\@#{$breakpointAlias} {
+                margin: #{($i / -2)}px !important;
+
+                & > * {
+                    padding: #{($i / 2)}px !important;
+                }
+            }
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Gap (5 > 35 Step 5)
+// ---------------------------------------------------------
+
+@for $i from 5 through 35 {
+    @if $i % 5 == 0 {
+        .gapX-#{$i} {
+            margin-left: #{($i / -2)}px !important;
+            margin-right: #{($i / -2)}px !important;
+
+            & > * {
+                padding-left: #{($i / 2)}px !important;
+                padding-right: #{($i / 2)}px !important;
+            }
+        }
+
+        .gapY-#{$i} {
+            margin-top: #{($i / -2)}px !important;
+            margin-bottom: #{($i / -2)}px !important;
+
+            & > * {
+                padding-top: #{($i / 2)}px !important;
+                padding-bottom: #{($i / 2)}px !important;
+            }
+        }
+
+        .gap-#{$i} {
+            margin: #{($i / -2)}px !important;
+
+            & > * {
+                padding: #{($i / 2)}px !important;
+            }
+        }
+
+        @if ($responsive == true) {
+            @include generateResponsive() {
+                .gapX-#{$i}\@#{$breakpointAlias} {
+                    margin-left: #{($i / -2)}px !important;
+                    margin-right: #{($i / -2)}px !important;
+
+                    & > * {
+                        padding-left: #{($i / 2)}px !important;
+                        padding-right: #{($i / 2)}px !important;
+                    }
+                }
+
+                .gapY-#{$i}\@#{$breakpointAlias} {
+                    margin-top: #{($i / -2)}px !important;
+                    margin-bottom: #{($i / -2)}px !important;
+
+                    & > * {
+                        padding-top: #{($i / 2)}px !important;
+                        padding-bottom: #{($i / 2)}px !important;
+                    }
+                }
+
+                .gap-#{$i}\@#{$breakpointAlias} {
+                    margin: #{($i / -2)}px !important;
+
+                    & > * {
+                        padding: #{($i / 2)}px !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Gap (40 > 160 Step 10)
+// ---------------------------------------------------------
+
+@for $i from 40 through 160 {
+    @if $i % 10 == 0 {
+        .gapX-#{$i} {
+            margin-left: #{($i / -2)}px !important;
+            margin-right: #{($i / -2)}px !important;
+
+            & > * {
+                padding-left: #{($i / 2)}px !important;
+                padding-right: #{($i / 2)}px !important;
+            }
+        }
+
+        .gapY-#{$i} {
+            margin-top: #{($i / -2)}px !important;
+            margin-bottom: #{($i / -2)}px !important;
+
+            & > * {
+                padding-top: #{($i / 2)}px !important;
+                padding-bottom: #{($i / 2)}px !important;
+            }
+        }
+
+        .gap-#{$i} {
+            margin: #{($i / -2)}px !important;
+
+            & > * {
+                padding: #{($i / 2)}px !important;
+            }
+        }
+
+        @if ($responsive == true) {
+            @include generateResponsive() {
+                .gapX-#{$i}\@#{$breakpointAlias} {
+                    margin-left: #{($i / -2)}px !important;
+                    margin-right: #{($i / -2)}px !important;
+
+                    & > * {
+                        padding-left: #{($i / 2)}px !important;
+                        padding-right: #{($i / 2)}px !important;
+                    }
+                }
+
+                .gapY-#{$i}\@#{$breakpointAlias} {
+                    margin-top: #{($i / -2)}px !important;
+                    margin-bottom: #{($i / -2)}px !important;
+
+                    & > * {
+                        padding-top: #{($i / 2)}px !important;
+                        padding-bottom: #{($i / 2)}px !important;
+                    }
+                }
+
+                .gap-#{$i}\@#{$breakpointAlias} {
+                    margin: #{($i / -2)}px !important;
+
+                    & > * {
+                        padding: #{($i / 2)}px !important;
+                    }
+                }
+            }
+        }
+    }
+}
+.peers {
+    box-sizing: border-box;
+    display: flex !important;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-flow: row wrap;
+    height: auto;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.peer {
+    display: block;
+    height: auto;
+    flex: 0 0 auto;
+}
+
+.peer-greed {
+    flex: 1 1 auto;
+    // overflow: hidden;
+}
+
+.peers-greed > .peer,
+.peers-greed > .peers {
+    flex: 1 1 auto;
+}
+
+.peer > img {
+    max-width: none;
+}
+
+.peer-greed > img {
+    max-width: 100%;
+}
+.layers {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+// ---------------------------------------------------------
+// @TOC
+// ---------------------------------------------------------
+
+// + @Variables
+// + @Flex Wrap
+// + @Flex Direction
+// + @Flex
+// + @Flex Basis
+// + @Flex Grow
+// + @Flex Shrink
+// + @Flex Order
+
+// ---------------------------------------------------------
+// @Variables
+// ---------------------------------------------------------
+
+$responsive: true;
+
+// ---------------------------------------------------------
+// @Display
+// ---------------------------------------------------------
+
+.d-f {
+    display: flex;
+}
+.d-if {
+    display: inline-flex;
+}
+
+@if ($responsive == true) {
+    @include generateResponsive() {
+        .d-f\@#{$breakpointAlias} {
+            display: flex;
+        }
+        .d-if\@#{$breakpointAlias} {
+            display: inline-flex;
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Flex Wrap
+// ---------------------------------------------------------
+
+.fxw-w {
+    flex-wrap: wrap;
+}
+.fxw-wr {
+    flex-wrap: wrap-reverse;
+}
+.fxw-nw {
+    flex-wrap: nowrap;
+}
+
+@if ($responsive == true) {
+    @include generateResponsive() {
+        .fxw-w\@#{$breakpointAlias} {
+            flex-wrap: wrap;
+        }
+        .fxw-wr\@#{$breakpointAlias} {
+            flex-wrap: wrap-reverse;
+        }
+        .fxw-nw\@#{$breakpointAlias} {
+            flex-wrap: nowrap;
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Flex Direction
+// ---------------------------------------------------------
+
+.fxd-c {
+    flex-direction: column;
+}
+.fxd-cr {
+    flex-direction: column-reverse;
+}
+.fxd-r {
+    flex-direction: row;
+}
+.fxd-rr {
+    flex-direction: row-reverse;
+}
+
+@if ($responsive == true) {
+    @include generateResponsive() {
+        .fxd-c\@#{$breakpointAlias} {
+            flex-direction: column;
+        }
+        .fxd-cr\@#{$breakpointAlias} {
+            flex-direction: column-reverse;
+        }
+        .fxd-r\@#{$breakpointAlias} {
+            flex-direction: row;
+        }
+        .fxd-rr\@#{$breakpointAlias} {
+            flex-direction: row-reverse;
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Align Items
+// ---------------------------------------------------------
+
+.ai-fs {
+    align-items: flex-start;
+}
+.ai-fe {
+    align-items: flex-end;
+}
+.ai-c {
+    align-items: center;
+}
+.ai-b {
+    align-items: baseline;
+}
+.ai-s {
+    align-items: stretch;
+}
+
+@if ($responsive == true) {
+    @include generateResponsive() {
+        .ai-fs\@#{$breakpointAlias} {
+            align-items: flex-start;
+        }
+        .ai-fe\@#{$breakpointAlias} {
+            align-items: flex-end;
+        }
+        .ai-c\@#{$breakpointAlias} {
+            align-items: center;
+        }
+        .ai-b\@#{$breakpointAlias} {
+            align-items: baseline;
+        }
+        .ai-s\@#{$breakpointAlias} {
+            align-items: stretch;
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Align Self
+// ---------------------------------------------------------
+
+.as-fs {
+    align-self: flex-start;
+}
+.as-fe {
+    align-self: flex-end;
+}
+.as-c {
+    align-self: center;
+}
+.as-b {
+    align-self: baseline;
+}
+.as-s {
+    align-self: stretch;
+}
+
+@if ($responsive == true) {
+    @include generateResponsive() {
+        .as-fs\@#{$breakpointAlias} {
+            align-self: flex-start;
+        }
+        .as-fe\@#{$breakpointAlias} {
+            align-self: flex-end;
+        }
+        .as-c\@#{$breakpointAlias} {
+            align-self: center;
+        }
+        .as-b\@#{$breakpointAlias} {
+            align-self: baseline;
+        }
+        .as-s\@#{$breakpointAlias} {
+            align-self: stretch;
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Align Content
+// ---------------------------------------------------------
+
+.ac-fs {
+    align-content: flex-start;
+}
+.ac-fe {
+    align-content: flex-end;
+}
+.ac-c {
+    align-content: center;
+}
+.ac-s {
+    align-content: stretch;
+}
+.ac-sb {
+    align-content: space-between;
+}
+.ac-sa {
+    align-content: space-around;
+}
+
+@if ($responsive == true) {
+    @include generateResponsive() {
+        .ac-fs\@#{$breakpointAlias} {
+            align-content: flex-start;
+        }
+        .ac-fe\@#{$breakpointAlias} {
+            align-content: flex-end;
+        }
+        .ac-c\@#{$breakpointAlias} {
+            align-content: center;
+        }
+        .ac-s\@#{$breakpointAlias} {
+            align-content: stretch;
+        }
+        .ac-sb\@#{$breakpointAlias} {
+            align-content: space-between;
+        }
+        .ac-sa\@#{$breakpointAlias} {
+            align-content: space-around;
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Justify Content
+// ---------------------------------------------------------
+
+.jc-fs {
+    justify-content: flex-start;
+}
+.jc-fe {
+    justify-content: flex-end;
+}
+.jc-c {
+    justify-content: center;
+}
+.jc-sb {
+    justify-content: space-between;
+}
+.jc-sa {
+    justify-content: space-around;
+}
+
+@if ($responsive == true) {
+    @include generateResponsive() {
+        .jc-fs\@#{$breakpointAlias} {
+            justify-content: flex-start;
+        }
+        .jc-fe\@#{$breakpointAlias} {
+            justify-content: flex-end;
+        }
+        .jc-c\@#{$breakpointAlias} {
+            justify-content: center;
+        }
+        .jc-sb\@#{$breakpointAlias} {
+            justify-content: space-between;
+        }
+        .jc-sa\@#{$breakpointAlias} {
+            justify-content: space-around;
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Flex
+// ---------------------------------------------------------
+
+.fx-n {
+    flex: none;
+}
+.fx-1 {
+    flex: 1;
+}
+
+@if ($responsive == true) {
+    @include generateResponsive() {
+        .fx-n\@#{$breakpointAlias} {
+            flex: none;
+        }
+        .fx-1\@#{$breakpointAlias} {
+            flex: 1;
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Flex Basis
+// ---------------------------------------------------------
+
+.fxb-a {
+    flex-basis: auto;
+}
+.fxb-0 {
+    flex-basis: 0;
+}
+
+@if ($responsive == true) {
+    @include generateResponsive() {
+        .fxb-a\@#{$breakpointAlias} {
+            flex-basis: auto;
+        }
+        .fxb-0\@#{$breakpointAlias} {
+            flex-basis: 0;
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Flex Grow
+// ---------------------------------------------------------
+
+.fxg-1 {
+    flex-grow: 1;
+}
+.fxg-0 {
+    flex-grow: 0;
+}
+
+@if ($responsive == true) {
+    @include generateResponsive() {
+        .fxg-1\@#{$breakpointAlias} {
+            flex-grow: 1;
+        }
+        .fxg-0\@#{$breakpointAlias} {
+            flex-grow: 0;
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Flex Shrink
+// ---------------------------------------------------------
+
+.fxs-1 {
+    flex-shrink: 1;
+}
+.fxs-0 {
+    flex-shrink: 0;
+}
+
+@if ($responsive == true) {
+    @include generateResponsive() {
+        .fxs-1\@#{$breakpointAlias} {
+            flex-shrink: 1;
+        }
+        .fxs-0\@#{$breakpointAlias} {
+            flex-shrink: 0;
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Flex Order
+// ---------------------------------------------------------
+
+@for $i from 0 through 12 {
+    .ord-#{$i} {
+        order: $i;
+    }
+
+    @if ($responsive == true) {
+        @include generateResponsive() {
+            .ord-#{$i}\@#{$breakpointAlias} {
+                order: $i;
+            }
+        }
+    }
+}
+// ---------------------------------------------------------
+// @TOC
+// ---------------------------------------------------------
+
+// + @Variables
+// + @Display
+// + @Overflow
+// + @Float
+// + @Vertical Align
+// + @Position
+// + @Z-Index
+
+// ---------------------------------------------------------
+// @Variables
+// ---------------------------------------------------------
+
+$responsive: true;
+
+// ---------------------------------------------------------
+// @Display
+// ---------------------------------------------------------
+
+.d-b {
+    display: block !important;
+}
+.d-ib {
+    display: inline-block !important;
+}
+.d-i {
+    display: inline !important;
+}
+.d-tb {
+    display: table !important;
+}
+.d-tbc {
+    display: table-cell !important;
+}
+.d-n {
+    display: none !important;
+}
+
+@if ($responsive == true) {
+    @include generateResponsive() {
+        .d-b\@#{$breakpointAlias} {
+            display: block !important;
+        }
+        .d-ib\@#{$breakpointAlias} {
+            display: inline-block !important;
+        }
+        .d-i\@#{$breakpointAlias} {
+            display: inline !important;
+        }
+        .d-tb\@#{$breakpointAlias} {
+            display: table !important;
+        }
+        .d-tbc\@#{$breakpointAlias} {
+            display: table-cell !important;
+        }
+        .d-n\@#{$breakpointAlias} {
+            display: none !important;
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Overflow
+// ---------------------------------------------------------
+
+.ov-h {
+    overflow: hidden !important;
+}
+.ov-a {
+    overflow: auto !important;
+}
+.ov-s {
+    overflow: scroll !important;
+}
+
+.ovY-h {
+    overflow-y: hidden !important;
+}
+.ovX-h {
+    overflow-x: hidden !important;
+}
+.ovY-a {
+    overflow-y: auto !important;
+}
+.ovX-a {
+    overflow-x: auto !important;
+}
+.ovY-s {
+    overflow-y: scroll !important;
+}
+.ovX-s {
+    overflow-x: scroll !important;
+}
+
+@if ($responsive == true) {
+    @include generateResponsive() {
+        .ov-h\@#{$breakpointAlias} {
+            overflow: hidden !important;
+        }
+        .ov-a\@#{$breakpointAlias} {
+            overflow: auto !important;
+        }
+        .ov-s\@#{$breakpointAlias} {
+            overflow: scroll !important;
+        }
+
+        .ovY-h\@#{$breakpointAlias} {
+            overflow-y: hidden !important;
+        }
+        .ovX-h\@#{$breakpointAlias} {
+            overflow-x: hidden !important;
+        }
+        .ovY-a\@#{$breakpointAlias} {
+            overflow-y: auto !important;
+        }
+        .ovX-a\@#{$breakpointAlias} {
+            overflow-x: auto !important;
+        }
+        .ovY-s\@#{$breakpointAlias} {
+            overflow-y: scroll !important;
+        }
+        .ovX-s\@#{$breakpointAlias} {
+            overflow-x: scroll !important;
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Float
+// ---------------------------------------------------------
+
+.fl-l {
+    float: left !important;
+}
+.fl-r {
+    float: right !important;
+}
+.fl-n {
+    float: none !important;
+}
+
+@if ($responsive == true) {
+    @include generateResponsive() {
+        .fl-l\@#{$breakpointAlias} {
+            float: left !important;
+        }
+        .fl-r\@#{$breakpointAlias} {
+            float: right !important;
+        }
+        .fl-n\@#{$breakpointAlias} {
+            float: none !important;
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Vertical Align
+// ---------------------------------------------------------
+
+.va-t {
+    vertical-align: top !important;
+}
+.va-m {
+    vertical-align: middle !important;
+}
+.va-b {
+    vertical-align: bottom !important;
+}
+
+@if ($responsive == true) {
+    @include generateResponsive() {
+        .va-t\@#{$breakpointAlias} {
+            vertical-align: top !important;
+        }
+        .va-m\@#{$breakpointAlias} {
+            vertical-align: middle !important;
+        }
+        .va-b\@#{$breakpointAlias} {
+            vertical-align: bottom !important;
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Position
+// ---------------------------------------------------------
+
+.pos-s {
+    position: static !important;
+}
+.pos-st {
+    position: sticky !important;
+}
+.pos-r {
+    position: relative !important;
+}
+.pos-a {
+    position: absolute !important;
+}
+.pos-f {
+    position: fixed !important;
+}
+
+@if ($responsive == true) {
+    @include generateResponsive() {
+        .pos-s\@#{$breakpointAlias} {
+            position: static !important;
+        }
+        .pos-st\@#{$breakpointAlias} {
+            position: sticky !important;
+        }
+        .pos-r\@#{$breakpointAlias} {
+            position: relative !important;
+        }
+        .pos-a\@#{$breakpointAlias} {
+            position: absolute !important;
+        }
+        .pos-f\@#{$breakpointAlias} {
+            position: fixed !important;
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Z-Index
+// ---------------------------------------------------------
+
+@for $i from 0 through 9 {
+    .z-#{$i} {
+        z-index: ($i * 1000) !important;
+    }
+
+    @if ($responsive == true) {
+        @include generateResponsive() {
+            .z-#{$i}\@#{$breakpointAlias} {
+                z-index: ($i * 1000) !important;
+            }
+        }
+    }
+}
+// ---------------------------------------------------------
+// @TOC
+// ---------------------------------------------------------
+
+// + @List Style Position
+// + @List Style Type
+
+// ---------------------------------------------------------
+// @List Style Position
+// ---------------------------------------------------------
+
+.lisp-i {
+    list-style-position: inside;
+}
+.lisp-o {
+    list-style-position: outside;
+}
+
+// ---------------------------------------------------------
+// @List Style Type
+// ---------------------------------------------------------
+
+.lis-n {
+    list-style: none;
+}
+.list-c {
+    list-style-type: circle;
+}
+.list-s {
+    list-style-type: square;
+}
+.list-u {
+    list-style-type: upper-roman;
+}
+.list-l {
+    list-style-type: lower-alpha;
+}
+// ---------------------------------------------------------
+// @TOC
+// ---------------------------------------------------------
+
+// + @Variables
+// + @Margin (0 > 4 Step 1)
+// + @Margin (5 > 35 Step 5)
+// + @Margin (40 > 160 Step 10)
+// + @Margin Auto
+
+// ---------------------------------------------------------
+// @Variables
+// ---------------------------------------------------------
+
+$responsive: true;
+
+// ---------------------------------------------------------
+// @Padding (0 > 4 Step 1)
+// ---------------------------------------------------------
+
+@for $i from 0 through 4 {
+    .m-#{$i} {
+        margin: #{$i}px !important;
+    }
+    .mT-#{$i} {
+        margin-top: #{$i}px !important;
+    }
+    .mR-#{$i} {
+        margin-right: #{$i}px !important;
+    }
+    .mB-#{$i} {
+        margin-bottom: #{$i}px !important;
+    }
+    .mL-#{$i} {
+        margin-left: #{$i}px !important;
+    }
+
+    .mY-#{$i} {
+        margin-top: #{$i}px !important;
+        margin-bottom: #{$i}px !important;
+    }
+
+    .mX-#{$i} {
+        margin-left: #{$i}px !important;
+        margin-right: #{$i}px !important;
+    }
+
+    .m-nv-#{$i} {
+        margin: -#{$i}px !important;
+    }
+    .mT-nv-#{$i} {
+        margin-top: -#{$i}px !important;
+    }
+    .mR-nv-#{$i} {
+        margin-right: -#{$i}px !important;
+    }
+    .mB-nv-#{$i} {
+        margin-bottom: -#{$i}px !important;
+    }
+    .mL-nv-#{$i} {
+        margin-left: -#{$i}px !important;
+    }
+
+    .mY-nv-#{$i} {
+        margin-top: -#{$i}px !important;
+        margin-bottom: -#{$i}px !important;
+    }
+
+    .mX-nv-#{$i} {
+        margin-left: -#{$i}px !important;
+        margin-right: -#{$i}px !important;
+    }
+
+    @if ($responsive == true) {
+        @include generateResponsive() {
+            .m-#{$i}\@#{$breakpointAlias} {
+                margin: #{$i}px !important;
+            }
+            .mT-#{$i}\@#{$breakpointAlias} {
+                margin-top: #{$i}px !important;
+            }
+            .mR-#{$i}\@#{$breakpointAlias} {
+                margin-right: #{$i}px !important;
+            }
+            .mB-#{$i}\@#{$breakpointAlias} {
+                margin-bottom: #{$i}px !important;
+            }
+            .mL-#{$i}\@#{$breakpointAlias} {
+                margin-left: #{$i}px !important;
+            }
+
+            .mY-#{$i}\@#{$breakpointAlias} {
+                margin-top: #{$i}px !important;
+                margin-bottom: #{$i}px !important;
+            }
+
+            .mX-#{$i}\@#{$breakpointAlias} {
+                margin-left: #{$i}px !important;
+                margin-right: #{$i}px !important;
+            }
+
+            .m-nv-#{$i}\@#{$breakpointAlias} {
+                margin: -#{$i}px !important;
+            }
+            .mT-nv-#{$i}\@#{$breakpointAlias} {
+                margin-top: -#{$i}px !important;
+            }
+            .mR-nv-#{$i}\@#{$breakpointAlias} {
+                margin-right: -#{$i}px !important;
+            }
+            .mB-nv-#{$i}\@#{$breakpointAlias} {
+                margin-bottom: -#{$i}px !important;
+            }
+            .mL-nv-#{$i}\@#{$breakpointAlias} {
+                margin-left: -#{$i}px !important;
+            }
+
+            .mY-nv-#{$i}\@#{$breakpointAlias} {
+                margin-top: -#{$i}px !important;
+                margin-bottom: -#{$i}px !important;
+            }
+
+            .mX-nv-#{$i}\@#{$breakpointAlias} {
+                margin-left: -#{$i}px !important;
+                margin-right: -#{$i}px !important;
+            }
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Padding (5 > 35 Step 5)
+// ---------------------------------------------------------
+
+@for $i from 5 through 35 {
+    @if $i % 5 == 0 {
+        .m-#{$i} {
+            margin: #{$i}px !important;
+        }
+        .mT-#{$i} {
+            margin-top: #{$i}px !important;
+        }
+        .mR-#{$i} {
+            margin-right: #{$i}px !important;
+        }
+        .mB-#{$i} {
+            margin-bottom: #{$i}px !important;
+        }
+        .mL-#{$i} {
+            margin-left: #{$i}px !important;
+        }
+
+        .mY-#{$i} {
+            margin-top: #{$i}px !important;
+            margin-bottom: #{$i}px !important;
+        }
+
+        .mX-#{$i} {
+            margin-left: #{$i}px !important;
+            margin-right: #{$i}px !important;
+        }
+
+        .m-nv-#{$i} {
+            margin: -#{$i}px !important;
+        }
+        .mT-nv-#{$i} {
+            margin-top: -#{$i}px !important;
+        }
+        .mR-nv-#{$i} {
+            margin-right: -#{$i}px !important;
+        }
+        .mB-nv-#{$i} {
+            margin-bottom: -#{$i}px !important;
+        }
+        .mL-nv-#{$i} {
+            margin-left: -#{$i}px !important;
+        }
+
+        .mY-nv-#{$i} {
+            margin-top: -#{$i}px !important;
+            margin-bottom: -#{$i}px !important;
+        }
+
+        .mX-nv-#{$i} {
+            margin-left: -#{$i}px !important;
+            margin-right: -#{$i}px !important;
+        }
+
+        @if ($responsive == true) {
+            @include generateResponsive() {
+                .m-#{$i}\@#{$breakpointAlias} {
+                    margin: #{$i}px !important;
+                }
+                .mT-#{$i}\@#{$breakpointAlias} {
+                    margin-top: #{$i}px !important;
+                }
+                .mR-#{$i}\@#{$breakpointAlias} {
+                    margin-right: #{$i}px !important;
+                }
+                .mB-#{$i}\@#{$breakpointAlias} {
+                    margin-bottom: #{$i}px !important;
+                }
+                .mL-#{$i}\@#{$breakpointAlias} {
+                    margin-left: #{$i}px !important;
+                }
+
+                .mY-#{$i}\@#{$breakpointAlias} {
+                    margin-top: #{$i}px !important;
+                    margin-bottom: #{$i}px !important;
+                }
+
+                .mX-#{$i}\@#{$breakpointAlias} {
+                    margin-left: #{$i}px !important;
+                    margin-right: #{$i}px !important;
+                }
+
+                .m-nv-#{$i}\@#{$breakpointAlias} {
+                    margin: -#{$i}px !important;
+                }
+                .mT-nv-#{$i}\@#{$breakpointAlias} {
+                    margin-top: -#{$i}px !important;
+                }
+                .mR-nv-#{$i}\@#{$breakpointAlias} {
+                    margin-right: -#{$i}px !important;
+                }
+                .mB-nv-#{$i}\@#{$breakpointAlias} {
+                    margin-bottom: -#{$i}px !important;
+                }
+                .mL-nv-#{$i}\@#{$breakpointAlias} {
+                    margin-left: -#{$i}px !important;
+                }
+
+                .mY-nv-#{$i}\@#{$breakpointAlias} {
+                    margin-top: -#{$i}px !important;
+                    margin-bottom: -#{$i}px !important;
+                }
+
+                .mX-nv-#{$i}\@#{$breakpointAlias} {
+                    margin-left: -#{$i}px !important;
+                    margin-right: -#{$i}px !important;
+                }
+            }
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Padding (40 > 160 Step 10)
+// ---------------------------------------------------------
+
+@for $i from 40 through 160 {
+    @if $i % 10 == 0 {
+        .m-#{$i} {
+            margin: #{$i}px !important;
+        }
+        .mT-#{$i} {
+            margin-top: #{$i}px !important;
+        }
+        .mR-#{$i} {
+            margin-right: #{$i}px !important;
+        }
+        .mB-#{$i} {
+            margin-bottom: #{$i}px !important;
+        }
+        .mL-#{$i} {
+            margin-left: #{$i}px !important;
+        }
+
+        .mY-#{$i} {
+            margin-top: #{$i}px !important;
+            margin-bottom: #{$i}px !important;
+        }
+
+        .mX-#{$i} {
+            margin-left: #{$i}px !important;
+            margin-right: #{$i}px !important;
+        }
+
+        .m-nv-#{$i} {
+            margin: -#{$i}px !important;
+        }
+        .mT-nv-#{$i} {
+            margin-top: -#{$i}px !important;
+        }
+        .mR-nv-#{$i} {
+            margin-right: -#{$i}px !important;
+        }
+        .mB-nv-#{$i} {
+            margin-bottom: -#{$i}px !important;
+        }
+        .mL-nv-#{$i} {
+            margin-left: -#{$i}px !important;
+        }
+
+        .mY-nv-#{$i} {
+            margin-top: -#{$i}px !important;
+            margin-bottom: -#{$i}px !important;
+        }
+
+        .mX-nv-#{$i} {
+            margin-left: -#{$i}px !important;
+            margin-right: -#{$i}px !important;
+        }
+
+        @if ($responsive == true) {
+            @include generateResponsive() {
+                .m-#{$i}\@#{$breakpointAlias} {
+                    margin: #{$i}px !important;
+                }
+                .mT-#{$i}\@#{$breakpointAlias} {
+                    margin-top: #{$i}px !important;
+                }
+                .mR-#{$i}\@#{$breakpointAlias} {
+                    margin-right: #{$i}px !important;
+                }
+                .mB-#{$i}\@#{$breakpointAlias} {
+                    margin-bottom: #{$i}px !important;
+                }
+                .mL-#{$i}\@#{$breakpointAlias} {
+                    margin-left: #{$i}px !important;
+                }
+
+                .mY-#{$i}\@#{$breakpointAlias} {
+                    margin-top: #{$i}px !important;
+                    margin-bottom: #{$i}px !important;
+                }
+
+                .mX-#{$i}\@#{$breakpointAlias} {
+                    margin-left: #{$i}px !important;
+                    margin-right: #{$i}px !important;
+                }
+
+                .m-nv-#{$i}\@#{$breakpointAlias} {
+                    margin: -#{$i}px !important;
+                }
+                .mT-nv-#{$i}\@#{$breakpointAlias} {
+                    margin-top: -#{$i}px !important;
+                }
+                .mR-nv-#{$i}\@#{$breakpointAlias} {
+                    margin-right: -#{$i}px !important;
+                }
+                .mB-nv-#{$i}\@#{$breakpointAlias} {
+                    margin-bottom: -#{$i}px !important;
+                }
+                .mL-nv-#{$i}\@#{$breakpointAlias} {
+                    margin-left: -#{$i}px !important;
+                }
+
+                .mY-nv-#{$i}\@#{$breakpointAlias} {
+                    margin-top: -#{$i}px !important;
+                    margin-bottom: -#{$i}px !important;
+                }
+
+                .mX-nv-#{$i}\@#{$breakpointAlias} {
+                    margin-left: -#{$i}px !important;
+                    margin-right: -#{$i}px !important;
+                }
+            }
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Padding Auto
+// ---------------------------------------------------------
+
+.m-a {
+    margin: auto !important;
+}
+.mX-a {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+.mT-a {
+    margin-top: auto !important;
+}
+.mR-a {
+    margin-right: auto !important;
+}
+.mB-a {
+    margin-bottom: auto !important;
+}
+.mL-a {
+    margin-left: auto !important;
+}
+
+@if ($responsive == true) {
+    @include generateResponsive() {
+        .m-a\@#{$breakpointAlias} {
+            margin: auto !important;
+        }
+        .mX-a\@#{$breakpointAlias} {
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+        .mT-a\@#{$breakpointAlias} {
+            margin-top: auto !important;
+        }
+        .mR-a\@#{$breakpointAlias} {
+            margin-right: auto !important;
+        }
+        .mB-a\@#{$breakpointAlias} {
+            margin-bottom: auto !important;
+        }
+        .mL-a\@#{$breakpointAlias} {
+            margin-left: auto !important;
+        }
+    }
+}
+// ---------------------------------------------------------
+// @TOC
+// ---------------------------------------------------------
+
+// + @Background Size
+// + @Background Position
+// + @Background Repeat
+// + @Object Fit
+// + @Resize
+// + @Opacity
+// + @Cursor
+// + @Visibility
+
+// ---------------------------------------------------------
+// @Background Size
+// ---------------------------------------------------------
+
+.bgsz-cv {
+    background-size: cover;
+}
+.bgsz-ct {
+    background-size: contain;
+}
+.bgsz-full {
+    background-size: 100% 100%;
+}
+
+// ---------------------------------------------------------
+// @Background Position
+// ---------------------------------------------------------
+
+.bgpX-c {
+    background-position-x: center;
+}
+.bgpX-t {
+    background-position-x: top;
+}
+.bgpX-r {
+    background-position-x: right;
+}
+.bgpX-l {
+    background-position-x: left;
+}
+.bgpX-b {
+    background-position-x: bottom;
+}
+.bgpY-c {
+    background-position-y: center;
+}
+.bgpY-t {
+    background-position-y: top;
+}
+.bgpY-r {
+    background-position-y: right;
+}
+.bgpY-l {
+    background-position-y: left;
+}
+.bgpY-b {
+    background-position-y: bottom;
+}
+
+// ---------------------------------------------------------
+// @Background Repeat
+// ---------------------------------------------------------
+
+.bgr-n {
+    background-repeat: no-repeat;
+}
+.bgr-y {
+    background-repeat: repeat-y;
+}
+.bgr-x {
+    background-repeat: repeat-x;
+}
+
+// ---------------------------------------------------------
+// @Object Fit
+// ---------------------------------------------------------
+
+.of-ct {
+    object-fit: contain;
+}
+.of-cv {
+    object-fit: cover;
+}
+.of-f {
+    object-fit: fill;
+}
+.of-n {
+    object-fit: none;
+}
+.of-sd {
+    object-fit: scale-down;
+}
+
+// ---------------------------------------------------------
+// @Resize
+// ---------------------------------------------------------
+
+.rsz-v {
+    resize: vertical;
+}
+.rsz-h {
+    resize: horizontal;
+}
+
+// ---------------------------------------------------------
+// @Opacity
+// ---------------------------------------------------------
+
+.op-0 {
+    opacity: 0;
+}
+.op-10p {
+    opacity: 0.1;
+}
+.op-20p {
+    opacity: 0.2;
+}
+.op-30p {
+    opacity: 0.3;
+}
+.op-40p {
+    opacity: 0.4;
+}
+.op-50p {
+    opacity: 0.5;
+}
+.op-60p {
+    opacity: 0.6;
+}
+.op-70p {
+    opacity: 0.7;
+}
+.op-80p {
+    opacity: 0.8;
+}
+.op-90p {
+    opacity: 0.9;
+}
+.op-100p {
+    opacity: 1;
+}
+
+// ---------------------------------------------------------
+// @Cursor
+// ---------------------------------------------------------
+
+.cur-na {
+    cursor: not-allowed;
+}
+.cur-p {
+    cursor: pointer;
+}
+.cur-a {
+    cursor: auto;
+}
+
+// ---------------------------------------------------------
+// @Visibility
+// ---------------------------------------------------------
+
+.vis-v {
+    visibility: visible;
+}
+.vis-h {
+    visibility: hidden;
+}
+// ---------------------------------------------------------
+// @TOC
+// ---------------------------------------------------------
+
+// + @Variables
+// + @Padding (0 > 4 Step 1)
+// + @Padding (5 > 35 Step 5)
+// + @Padding (40 > 160 Step 10)
+// + @Padding Auto
+
+// ---------------------------------------------------------
+// @Variables
+// ---------------------------------------------------------
+
+$responsive: true;
+
+// ---------------------------------------------------------
+// @Padding (0 > 4 Step 1)
+// ---------------------------------------------------------
+
+@for $i from 0 through 4 {
+    .p-#{$i} {
+        padding: #{$i}px !important;
+    }
+    .pT-#{$i} {
+        padding-top: #{$i}px !important;
+    }
+    .pR-#{$i} {
+        padding-right: #{$i}px !important;
+    }
+    .pB-#{$i} {
+        padding-bottom: #{$i}px !important;
+    }
+    .pL-#{$i} {
+        padding-left: #{$i}px !important;
+    }
+
+    .pY-#{$i} {
+        padding-top: #{$i}px !important;
+        padding-bottom: #{$i}px !important;
+    }
+
+    .pX-#{$i} {
+        padding-left: #{$i}px !important;
+        padding-right: #{$i}px !important;
+    }
+
+    @if ($responsive == true) {
+        @include generateResponsive() {
+            .p-#{$i}\@#{$breakpointAlias} {
+                padding: #{$i}px !important;
+            }
+            .pT-#{$i}\@#{$breakpointAlias} {
+                padding-top: #{$i}px !important;
+            }
+            .pR-#{$i}\@#{$breakpointAlias} {
+                padding-right: #{$i}px !important;
+            }
+            .pB-#{$i}\@#{$breakpointAlias} {
+                padding-bottom: #{$i}px !important;
+            }
+            .pL-#{$i}\@#{$breakpointAlias} {
+                padding-left: #{$i}px !important;
+            }
+
+            .pY-#{$i}\@#{$breakpointAlias} {
+                padding-top: #{$i}px !important;
+                padding-bottom: #{$i}px !important;
+            }
+
+            .pX-#{$i}\@#{$breakpointAlias} {
+                padding-left: #{$i}px !important;
+                padding-right: #{$i}px !important;
+            }
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Padding (5 > 35 Step 5)
+// ---------------------------------------------------------
+
+@for $i from 5 through 35 {
+    @if $i % 5 == 0 {
+        .p-#{$i} {
+            padding: #{$i}px !important;
+        }
+        .pT-#{$i} {
+            padding-top: #{$i}px !important;
+        }
+        .pR-#{$i} {
+            padding-right: #{$i}px !important;
+        }
+        .pB-#{$i} {
+            padding-bottom: #{$i}px !important;
+        }
+        .pL-#{$i} {
+            padding-left: #{$i}px !important;
+        }
+
+        .pY-#{$i} {
+            padding-top: #{$i}px !important;
+            padding-bottom: #{$i}px !important;
+        }
+
+        .pX-#{$i} {
+            padding-left: #{$i}px !important;
+            padding-right: #{$i}px !important;
+        }
+
+        @if ($responsive == true) {
+            @include generateResponsive() {
+                .p-#{$i}\@#{$breakpointAlias} {
+                    padding: #{$i}px !important;
+                }
+                .pT-#{$i}\@#{$breakpointAlias} {
+                    padding-top: #{$i}px !important;
+                }
+                .pR-#{$i}\@#{$breakpointAlias} {
+                    padding-right: #{$i}px !important;
+                }
+                .pB-#{$i}\@#{$breakpointAlias} {
+                    padding-bottom: #{$i}px !important;
+                }
+                .pL-#{$i}\@#{$breakpointAlias} {
+                    padding-left: #{$i}px !important;
+                }
+
+                .pY-#{$i}\@#{$breakpointAlias} {
+                    padding-top: #{$i}px !important;
+                    padding-bottom: #{$i}px !important;
+                }
+
+                .pX-#{$i}\@#{$breakpointAlias} {
+                    padding-left: #{$i}px !important;
+                    padding-right: #{$i}px !important;
+                }
+            }
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Padding (40 > 160 Step 10)
+// ---------------------------------------------------------
+
+@for $i from 40 through 160 {
+    @if $i % 10 == 0 {
+        .p-#{$i} {
+            padding: #{$i}px !important;
+        }
+        .pT-#{$i} {
+            padding-top: #{$i}px !important;
+        }
+        .pR-#{$i} {
+            padding-right: #{$i}px !important;
+        }
+        .pB-#{$i} {
+            padding-bottom: #{$i}px !important;
+        }
+        .pL-#{$i} {
+            padding-left: #{$i}px !important;
+        }
+
+        .pY-#{$i} {
+            padding-top: #{$i}px !important;
+            padding-bottom: #{$i}px !important;
+        }
+
+        .pX-#{$i} {
+            padding-left: #{$i}px !important;
+            padding-right: #{$i}px !important;
+        }
+
+        @if ($responsive == true) {
+            @include generateResponsive() {
+                .p-#{$i}\@#{$breakpointAlias} {
+                    padding: #{$i}px !important;
+                }
+                .pT-#{$i}\@#{$breakpointAlias} {
+                    padding-top: #{$i}px !important;
+                }
+                .pR-#{$i}\@#{$breakpointAlias} {
+                    padding-right: #{$i}px !important;
+                }
+                .pB-#{$i}\@#{$breakpointAlias} {
+                    padding-bottom: #{$i}px !important;
+                }
+                .pL-#{$i}\@#{$breakpointAlias} {
+                    padding-left: #{$i}px !important;
+                }
+
+                .pY-#{$i}\@#{$breakpointAlias} {
+                    padding-top: #{$i}px !important;
+                    padding-bottom: #{$i}px !important;
+                }
+
+                .pX-#{$i}\@#{$breakpointAlias} {
+                    padding-left: #{$i}px !important;
+                    padding-right: #{$i}px !important;
+                }
+            }
+        }
+    }
+}
+// ---------------------------------------------------------
+// @TOC
+// ---------------------------------------------------------
+
+// + @Variables
+// + @Position (0 > 4 Step 1)
+// + @Position (5 > 35 Step 5)
+// + @Position (40 > 160 Step 10)
+
+// ---------------------------------------------------------
+// @Variables
+// ---------------------------------------------------------
+
+$responsive: true;
+
+// ---------------------------------------------------------
+// @Position (0 > 4 Step 1)
+// ---------------------------------------------------------
+
+@for $i from 0 through 4 {
+    .t-#{$i} {
+        top: #{$i}px;
+    }
+    .r-#{$i} {
+        right: #{$i}px;
+    }
+    .b-#{$i} {
+        bottom: #{$i}px;
+    }
+    .l-#{$i} {
+        left: #{$i}px;
+    }
+
+    @if ($responsive == true) {
+        @include generateResponsive() {
+            .t-#{$i}\@#{$breakpointAlias} {
+                top: #{$i}px;
+            }
+            .r-#{$i}\@#{$breakpointAlias} {
+                right: #{$i}px;
+            }
+            .b-#{$i}\@#{$breakpointAlias} {
+                bottom: #{$i}px;
+            }
+            .l-#{$i}\@#{$breakpointAlias} {
+                left: #{$i}px;
+            }
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Position (5 > 35 Step 5)
+// ---------------------------------------------------------
+
+@for $i from 5 through 35 {
+    @if $i % 5 == 0 {
+        .t-#{$i} {
+            top: #{$i}px;
+        }
+        .r-#{$i} {
+            right: #{$i}px;
+        }
+        .b-#{$i} {
+            bottom: #{$i}px;
+        }
+        .l-#{$i} {
+            left: #{$i}px;
+        }
+
+        @if ($responsive == true) {
+            @include generateResponsive() {
+                .t-#{$i}\@#{$breakpointAlias} {
+                    top: #{$i}px;
+                }
+                .r-#{$i}\@#{$breakpointAlias} {
+                    right: #{$i}px;
+                }
+                .b-#{$i}\@#{$breakpointAlias} {
+                    bottom: #{$i}px;
+                }
+                .l-#{$i}\@#{$breakpointAlias} {
+                    left: #{$i}px;
+                }
+            }
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Position (40 > 160 Step 10)
+// ---------------------------------------------------------
+
+@for $i from 40 through 160 {
+    @if $i % 10 == 0 {
+        .t-#{$i} {
+            top: #{$i}px;
+        }
+        .r-#{$i} {
+            right: #{$i}px;
+        }
+        .b-#{$i} {
+            bottom: #{$i}px;
+        }
+        .l-#{$i} {
+            left: #{$i}px;
+        }
+
+        @if ($responsive == true) {
+            @include generateResponsive() {
+                .t-#{$i}\@#{$breakpointAlias} {
+                    top: #{$i}px;
+                }
+                .r-#{$i}\@#{$breakpointAlias} {
+                    right: #{$i}px;
+                }
+                .b-#{$i}\@#{$breakpointAlias} {
+                    bottom: #{$i}px;
+                }
+                .l-#{$i}\@#{$breakpointAlias} {
+                    left: #{$i}px;
+                }
+            }
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Position (50%)
+// ---------------------------------------------------------
+
+.tl-50p {
+    top: 50%;
+    left: 50%;
+}
+
+.tr-50p {
+    top: 50%;
+    right: 50%;
+}
+
+.t-50p {
+    top: 50%;
+}
+.r-50p {
+    right: 50%;
+}
+.b-50p {
+    bottom: 50%;
+}
+.l-50p {
+    left: 50%;
+}
+
+@if ($responsive == true) {
+    @include generateResponsive() {
+        .tl-50p\@#{$breakpointAlias} {
+            top: 50%;
+            left: 50%;
+        }
+
+        .tr-50p\@#{$breakpointAlias} {
+            top: 50%;
+            right: 50%;
+        }
+
+        .t-50p\@#{$breakpointAlias} {
+            top: 50%;
+        }
+        .r-50p\@#{$breakpointAlias} {
+            right: 50%;
+        }
+        .b-50p\@#{$breakpointAlias} {
+            bottom: 50%;
+        }
+        .l-50p\@#{$breakpointAlias} {
+            left: 50%;
+        }
+    }
+}
+// ---------------------------------------------------------
+// @TOC
+// ---------------------------------------------------------
+
+// + @Variables
+// + @Fixed Width
+// + @Relative Width
+// + @Fixed Height
+// + @Max Size
+
+// ---------------------------------------------------------
+// @Variables
+// ---------------------------------------------------------
+
+$responsive: true;
+
+// ---------------------------------------------------------
+// @Fixed Width
+// ---------------------------------------------------------
+
+.w-1\/4r,
+.sz-1\/4r {
+    width: 0.25rem;
+}
+.w-1\/2r,
+.sz-1\/2r {
+    width: 0.5rem;
+}
+.w-3\/4r,
+.sz-3\/4r {
+    width: 0.75rem;
+}
+.w-1r,
+.sz-1r {
+    width: 1rem;
+}
+.w-3\/2r,
+.sz-3\/2r {
+    width: 1.5rem;
+}
+.w-2r,
+.sz-2r {
+    width: 2rem;
+}
+.w-5\/2r,
+.sz-5\/2r {
+    width: 2.5rem;
+}
+.w-3r,
+.sz-3r {
+    width: 3rem;
+}
+.w-7\/2r,
+.sz-7\/2r {
+    width: 3.5rem;
+}
+.w-4r,
+.sz-4r {
+    width: 4rem;
+}
+.w-9\/2r,
+.sz-9\/2r {
+    width: 4.5rem;
+}
+.w-5r,
+.sz-5r {
+    width: 5rem;
+}
+.w-11\/2r,
+.sz-11\/2r {
+    width: 5.5rem;
+}
+.w-6r,
+.sz-6r {
+    width: 6rem;
+}
+
+@if ($responsive == true) {
+    @include generateResponsive() {
+        .w-1\/4r\@#{$breakpointAlias},
+        .sz-1\/4r\@#{$breakpointAlias} {
+            width: 0.25rem;
+        }
+        .w-1\/2r\@#{$breakpointAlias},
+        .sz-1\/2r\@#{$breakpointAlias} {
+            width: 0.5rem;
+        }
+        .w-3\/4r\@#{$breakpointAlias},
+        .sz-3\/4r\@#{$breakpointAlias} {
+            width: 0.75rem;
+        }
+        .w-1r\@#{$breakpointAlias},
+        .sz-1r\@#{$breakpointAlias} {
+            width: 1rem;
+        }
+        .w-3\/2r\@#{$breakpointAlias},
+        .sz-3\/2r\@#{$breakpointAlias} {
+            width: 1.5rem;
+        }
+        .w-2r\@#{$breakpointAlias},
+        .sz-2r\@#{$breakpointAlias} {
+            width: 2rem;
+        }
+        .w-5\/2r\@#{$breakpointAlias},
+        .sz-5\/2r\@#{$breakpointAlias} {
+            width: 2.5rem;
+        }
+        .w-3r\@#{$breakpointAlias},
+        .sz-3r\@#{$breakpointAlias} {
+            width: 3rem;
+        }
+        .w-7\/2r\@#{$breakpointAlias},
+        .sz-7\/2r\@#{$breakpointAlias} {
+            width: 3.5rem;
+        }
+        .w-4r\@#{$breakpointAlias},
+        .sz-4r\@#{$breakpointAlias} {
+            width: 4rem;
+        }
+        .w-9\/2r\@#{$breakpointAlias},
+        .sz-9\/2r\@#{$breakpointAlias} {
+            width: 4.5rem;
+        }
+        .w-5r\@#{$breakpointAlias},
+        .sz-5r\@#{$breakpointAlias} {
+            width: 5rem;
+        }
+        .w-11\/2r\@#{$breakpointAlias},
+        .sz-11\/2r\@#{$breakpointAlias} {
+            width: 5.5rem;
+        }
+        .w-6r\@#{$breakpointAlias},
+        .sz-6r\@#{$breakpointAlias} {
+            width: 6rem;
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Relative Width
+// ---------------------------------------------------------
+
+.w-0 {
+    width: 0px;
+}
+.w-10p {
+    width: 10%;
+}
+.w-20p {
+    width: 20%;
+}
+.w-30p {
+    width: 30%;
+}
+.w-40p {
+    width: 40%;
+}
+.w-50p {
+    width: 50%;
+}
+.w-60p {
+    width: 60%;
+}
+.w-70p {
+    width: 70%;
+}
+.w-80p {
+    width: 80%;
+}
+.w-90p {
+    width: 90%;
+}
+.w-100p {
+    width: 100%;
+}
+.w-1px {
+    width: 1px;
+}
+.w-a {
+    width: auto;
+}
+
+@if ($responsive == true) {
+    @include generateResponsive() {
+        .w-0\@#{$breakpointAlias} {
+            width: 0px;
+        }
+        .w-10p\@#{$breakpointAlias} {
+            width: 10%;
+        }
+        .w-20p\@#{$breakpointAlias} {
+            width: 20%;
+        }
+        .w-30p\@#{$breakpointAlias} {
+            width: 30%;
+        }
+        .w-40p\@#{$breakpointAlias} {
+            width: 40%;
+        }
+        .w-50p\@#{$breakpointAlias} {
+            width: 50%;
+        }
+        .w-60p\@#{$breakpointAlias} {
+            width: 60%;
+        }
+        .w-70p\@#{$breakpointAlias} {
+            width: 70%;
+        }
+        .w-80p\@#{$breakpointAlias} {
+            width: 80%;
+        }
+        .w-90p\@#{$breakpointAlias} {
+            width: 90%;
+        }
+        .w-100p\@#{$breakpointAlias} {
+            width: 100%;
+        }
+        .w-1px\@#{$breakpointAlias} {
+            width: 1px;
+        }
+        .w-a\@#{$breakpointAlias} {
+            width: auto;
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Fixed Height
+// ---------------------------------------------------------
+
+.h-1\/4r,
+.sz-1\/4r {
+    height: 0.25rem;
+}
+.h-1\/2r,
+.sz-1\/2r {
+    height: 0.5rem;
+}
+.h-3\/4r,
+.sz-3\/4r {
+    height: 0.75rem;
+}
+.h-1r,
+.sz-1r {
+    height: 1rem;
+}
+.h-3\/2r,
+.sz-3\/2r {
+    height: 1.5rem;
+}
+.h-2r,
+.sz-2r {
+    height: 2rem;
+}
+.h-5\/2r,
+.sz-5\/2r {
+    height: 2.5rem;
+}
+.h-3r,
+.sz-3r {
+    height: 3rem;
+}
+.h-7\/2r,
+.sz-7\/2r {
+    height: 3.5rem;
+}
+.h-4r,
+.sz-4r {
+    height: 4rem;
+}
+.h-9\/2r,
+.sz-9\/2r {
+    height: 4.5rem;
+}
+.h-5r,
+.sz-5r {
+    height: 5rem;
+}
+.h-11\/2r,
+.sz-11\/2r {
+    height: 5.5rem;
+}
+.h-6r,
+.sz-6r {
+    height: 6rem;
+}
+
+@if ($responsive == true) {
+    @include generateResponsive() {
+        .h-1\/4r\@#{$breakpointAlias},
+        .sz-1\/4r\@#{$breakpointAlias} {
+            height: 0.25rem;
+        }
+        .h-1\/2r\@#{$breakpointAlias},
+        .sz-1\/2r\@#{$breakpointAlias} {
+            height: 0.5rem;
+        }
+        .h-3\/4r\@#{$breakpointAlias},
+        .sz-3\/4r\@#{$breakpointAlias} {
+            height: 0.75rem;
+        }
+        .h-1r\@#{$breakpointAlias},
+        .sz-1r\@#{$breakpointAlias} {
+            height: 1rem;
+        }
+        .h-3\/2r\@#{$breakpointAlias},
+        .sz-3\/2r\@#{$breakpointAlias} {
+            height: 1.5rem;
+        }
+        .h-2r\@#{$breakpointAlias},
+        .sz-2r\@#{$breakpointAlias} {
+            height: 2rem;
+        }
+        .h-5\/2r\@#{$breakpointAlias},
+        .sz-5\/2r\@#{$breakpointAlias} {
+            height: 2.5rem;
+        }
+        .h-3r\@#{$breakpointAlias},
+        .sz-3r\@#{$breakpointAlias} {
+            height: 3rem;
+        }
+        .h-7\/2r\@#{$breakpointAlias},
+        .sz-7\/2r\@#{$breakpointAlias} {
+            height: 3.5rem;
+        }
+        .h-4r\@#{$breakpointAlias},
+        .sz-4r\@#{$breakpointAlias} {
+            height: 4rem;
+        }
+        .h-9\/2r\@#{$breakpointAlias},
+        .sz-9\/2r\@#{$breakpointAlias} {
+            height: 4.5rem;
+        }
+        .h-5r\@#{$breakpointAlias},
+        .sz-5r\@#{$breakpointAlias} {
+            height: 5rem;
+        }
+        .h-11\/2r\@#{$breakpointAlias},
+        .sz-11\/2r\@#{$breakpointAlias} {
+            height: 5.5rem;
+        }
+        .h-6r\@#{$breakpointAlias},
+        .sz-6r\@#{$breakpointAlias} {
+            height: 6rem;
+        }
+    }
+}
+
+.h-0 {
+    height: 0;
+}
+.h-auto {
+    height: auto;
+}
+.h-100p {
+    height: 100%;
+}
+.h-100vh {
+    height: 100vh;
+}
+
+@if ($responsive == true) {
+    @include generateResponsive() {
+        .h-0\@#{$breakpointAlias} {
+            height: 0;
+        }
+        .h-auto\@#{$breakpointAlias} {
+            height: auto;
+        }
+        .h-100p\@#{$breakpointAlias} {
+            height: 100%;
+        }
+        .h-100vh\@#{$breakpointAlias} {
+            height: 100vh;
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Max Size
+// ---------------------------------------------------------
+
+.mw-100p {
+    max-width: 100%;
+}
+.mh-100p {
+    max-height: 100%;
+}
+
+@if ($responsive == true) {
+    @include generateResponsive() {
+        .mw-100p\@#{$breakpointAlias} {
+            max-width: 100%;
+        }
+        .mh-100p\@#{$breakpointAlias} {
+            max-height: 100%;
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @TOC
+// ---------------------------------------------------------
+
+// + @Variables
+// + @Text Align
+// + @Text Transform
+// + @Font Style
+// + @Text Decoration
+// + @White Space
+// + @Word Break
+// + @Word Wrap
+// + @Text Overflow
+// + @Font Size
+// + @Font Weight
+// + @Line Height
+
+// ---------------------------------------------------------
+// @Variables
+// ---------------------------------------------------------
+
+$responsive: true;
+
+// ---------------------------------------------------------
+// @Text Align
+// ---------------------------------------------------------
+
+.ta-c {
+    text-align: center !important;
+}
+.ta-l {
+    text-align: left !important;
+}
+.ta-r {
+    text-align: right !important;
+}
+
+@if ($responsive == true) {
+    @include generateResponsive() {
+        .ta-c\@#{$breakpointAlias} {
+            text-align: center !important;
+        }
+        .ta-l\@#{$breakpointAlias} {
+            text-align: left !important;
+        }
+        .ta-r\@#{$breakpointAlias} {
+            text-align: right !important;
+        }
+    }
+}
+
+// ---------------------------------------------------------
+// @Text Transform
+// ---------------------------------------------------------
+
+.tt-n {
+    text-transform: none !important;
+}
+.tt-u {
+    text-transform: uppercase !important;
+}
+.tt-l {
+    text-transform: lowercase !important;
+}
+.tt-c {
+    text-transform: capitalize !important;
+}
+
+// ---------------------------------------------------------
+// @Font Style
+// ---------------------------------------------------------
+
+.fs-i {
+    font-style: italic !important;
+}
+.fs-o {
+    font-style: oblique !important;
+}
+
+// ---------------------------------------------------------
+// @Text Decoration
+// ---------------------------------------------------------
+
+.td-n {
+    text-decoration: none !important;
+}
+.td-o {
+    text-decoration: overline !important;
+}
+.td-lt {
+    text-decoration: line-through !important;
+}
+.td-u {
+    text-decoration: underline !important;
+}
+
+// ---------------------------------------------------------
+// @White Space
+// ---------------------------------------------------------
+
+.whs-nw {
+    white-space: nowrap !important;
+}
+.whs-p {
+    white-space: pre !important;
+}
+.whs-n {
+    white-space: normal !important;
+}
+
+// ---------------------------------------------------------
+// @Word Break
+// ---------------------------------------------------------
+
+.wob-n {
+    word-break: normal !important;
+}
+.wob-ba {
+    word-break: break-all !important;
+}
+.wob-k {
+    word-break: keep-all !important;
+}
+
+// ---------------------------------------------------------
+// @Word Wrap
+// ---------------------------------------------------------
+
+.wow-bw {
+    word-wrap: break-word !important;
+}
+.wow-n {
+    word-wrap: normal !important;
+}
+
+// ---------------------------------------------------------
+// @Text Overflow
+// ---------------------------------------------------------
+
+.tov-e {
+    text-overflow: ellipsis !important;
+}
+
+// ---------------------------------------------------------
+// @Font Size
+// ---------------------------------------------------------
+
+.fsz-xs {
+    font-size: 0.75rem !important;
+}
+.fsz-sm {
+    font-size: 0.87rem !important;
+}
+.fsz-def {
+    font-size: 1rem !important;
+}
+.fsz-md {
+    font-size: 1.15rem !important;
+}
+.fsz-lg {
+    font-size: 1.4rem !important;
+}
+.fsz-xl {
+    font-size: 1.7rem !important;
+}
+
+// ---------------------------------------------------------
+// @Font Weight
+// ---------------------------------------------------------
+
+.fw-100 {
+    font-weight: 100 !important;
+}
+.fw-200 {
+    font-weight: 200 !important;
+}
+.fw-300 {
+    font-weight: 300 !important;
+}
+.fw-400 {
+    font-weight: 400 !important;
+}
+.fw-500 {
+    font-weight: 500 !important;
+}
+.fw-600 {
+    font-weight: 600 !important;
+}
+.fw-700 {
+    font-weight: 700 !important;
+}
+.fw-800 {
+    font-weight: 800 !important;
+}
+.fw-900 {
+    font-weight: 900 !important;
+}
+
+// ---------------------------------------------------------
+// @Line Height
+// ---------------------------------------------------------
+
+.lh-0 {
+    line-height: 0 !important;
+}
+.lh-1 {
+    line-height: 1 !important;
+}
+.lh-3\/2 {
+    line-height: 1.5 !important;
+}
+// ---------------------------------------------------------
+// @TOC
+// ---------------------------------------------------------
+
+// + @Quick Border Helpers
+// + @Border Width
+// + @Border Radius
+// + @Border Style
+
+// ---------------------------------------------------------
+// @Quick Border Helpers
+// ---------------------------------------------------------
+
+.bd {
+    border: #{$border-width} solid #{$border-color} !important;
+}
+.bdT {
+    border-top: #{$border-width} solid #{$border-color} !important;
+}
+.bdR {
+    border-right: #{$border-width} solid #{$border-color} !important;
+}
+.bdB {
+    border-bottom: #{$border-width} solid #{$border-color} !important;
+}
+.bdL {
+    border-left: #{$border-width} solid #{$border-color} !important;
+}
+
+// ---------------------------------------------------------
+// @Border Width
+// ---------------------------------------------------------
+
+@for $i from 0 through 5 {
+    .bdw-#{$i} {
+        border-width: #{$i}px !important;
+    }
+    .bdwT-#{$i} {
+        border-top-width: #{$i}px !important;
+    }
+    .bdwR-#{$i} {
+        border-right-width: #{$i}px !important;
+    }
+    .bdwB-#{$i} {
+        border-bottom-width: #{$i}px !important;
+    }
+    .bdwL-#{$i} {
+        border-left-width: #{$i}px !important;
+    }
+}
+
+// ---------------------------------------------------------
+// @Border Radius
+// ---------------------------------------------------------
+
+@for $i from 0 to 5 {
+    .bdrs-#{$i} {
+        border-radius: #{$i}px !important;
+    }
+
+    .bdrsT-#{$i} {
+        border-top-left-radius: #{$i}px !important;
+        border-top-right-radius: #{$i}px !important;
+    }
+
+    .bdrsR-#{$i} {
+        border-top-right-radius: #{$i}px !important;
+        border-bottom-right-radius: #{$i}px !important;
+    }
+
+    .bdrsB-#{$i} {
+        border-bottom-left-radius: #{$i}px !important;
+        border-bottom-right-radius: #{$i}px !important;
+    }
+
+    .bdrsL-#{$i} {
+        border-top-left-radius: #{$i}px !important;
+        border-bottom-left-radius: #{$i}px !important;
+    }
+}
+
+.bdrs-50p {
+    border-radius: 50% !important;
+}
+.bdrs-10em {
+    border-radius: 10em !important;
+}
+
+// ---------------------------------------------------------
+// @Border Style
+// ---------------------------------------------------------
+
+.bds-n {
+    border-style: none !important;
+}
+.bds-s {
+    border-style: solid !important;
+}
+.bds-dt {
+    border-style: dotted !important;
+}
+.bds-ds {
+    border-style: dashed !important;
+}
+.bds-db {
+    border-style: double !important;
+}
+.bds-g {
+    border-style: groove !important;
+}
+.bds-r {
+    border-style: ridge !important;
+}
+.bds-i {
+    border-style: inset !important;
+}
+.bds-o {
+    border-style: outset !important;
+}
+// ---------------------------------------------------------
+// @Pseudo Elements
+// ---------------------------------------------------------
+
+.no-after::after {
+    display: none !important;
+}
+.no-before::before {
+    display: none !important;
+}
+// Color
+// ---------------------------------------------------------
+// @TOC
+// ---------------------------------------------------------
+
+// + @Material Color
+// + @Grey Colors
+
+// ---------------------------------------------------------
+// @Material Color
+// ---------------------------------------------------------
+
+@each $item, $color in $md-colors {
+    .c-#{$item},
+    .cH-#{$item}:hover {
+        color: $color !important;
+    }
+    .bgc-#{$item},
+    .bgcH-#{$item}:hover {
+        background-color: $color !important;
+    }
+    .bdc-#{$item},
+    .bdcH-#{$item}:hover {
+        border-color: $color !important;
+    }
+    .fill-#{$item},
+    .fillH-#{$item}:hover {
+        fill: $color !important;
+    }
+    .str-#{$item},
+    .strH-#{$item}:hover {
+        stroke: $color !important;
+    }
+}
+
+// ---------------------------------------------------------
+// @Grey Colors
+// ---------------------------------------------------------
+
+@each $item, $color in $grey-colors-alt {
+    .c-#{$item},
+    .cH-#{$item}:hover {
+        color: $color !important;
+    }
+    .bgc-#{$item},
+    .bgcH-#{$item}:hover {
+        background-color: $color !important;
+    }
+    .bdc-#{$item},
+    .bdcH-#{$item}:hover {
+        border-color: $color !important;
+    }
+    .fill-#{$item},
+    .fillH-#{$item}:hover {
+        fill: $color !important;
+    }
+    .str-#{$item},
+    .strH-#{$item}:hover {
+        stroke: $color !important;
+    }
+}
