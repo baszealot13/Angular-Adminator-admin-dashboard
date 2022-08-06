@@ -1,0 +1,55 @@
+<div class="peers ai-s fxw-nw h-100vh">
+    <div class="d-n@sm- peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv"
+        style='background-image: url("assets/static/images/bg.jpg")'>
+        <div class="pos-a centerXY">
+            <div class="bgc-white bdrs-50p pos-r" style='width: 120px; height: 120px;'>
+                <img class="pos-a centerXY" src="assets/static/images/logo.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-4 peer pX-40 pY-80 h-100 bgc-white scrollable pos-r" style='min-width: 320px;'>
+        <h4 class="fw-300 c-grey-900 mB-40">Login</h4>
+        <form [formGroup]="signInForm" (ngSubmit)="submitSignIn()">
+            <div class="mb-3">
+                <label class="text-normal text-dark form-label">Username</label>
+                <input type="email" class="form-control" id="username" formControlName="username" placeholder="John Doe"
+                    required>
+                <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+                    <div *ngIf="username.errors?.['required']">
+                        Username is required.
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="text-normal text-dark form-label">Password</label>
+                <input type="password" class="form-control" id="password" formControlName="password"
+                    placeholder="Password" required>
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+                    <div *ngIf="password.errors?.['required']">
+                        Password is required.
+                    </div>
+                    <div *ngIf="password.errors?.['minlength']">
+                        Password must be at least 8 characters long.
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <div class="peers ai-c jc-sb fxw-nw">
+                    <div class="peer">
+                        <div class="checkbox checkbox-circle checkbox-info peers ai-c">
+                            <input type="checkbox" id="rememberMe" formControlName="rememberMe" name="rememberMe"
+                                class="peer">
+                            <label for="rememberMe" class="peers peer-greed js-sb ai-c form-label ms-1">
+                                <span class="peer peer-greed">Remember Me</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="peer">
+                        <button type="submit" class="btn btn-primary btn-color"
+                            [disabled]="signInForm.invalid">Login</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

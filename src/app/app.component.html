@@ -32,7 +32,7 @@
 
 <!-- @App Content -->
 <!-- =================================================== -->
-<div #appMain>
+<div #appMain *ngIf="isLoggedIn">
     <app-sidebar></app-sidebar>
     <!-- #Main ============================ -->
     <div class="page-container">
@@ -63,3 +63,5 @@
         </footer>
     </div>
 </div>
+
+<router-outlet *ngIf="!isLoggedIn"></router-outlet>
